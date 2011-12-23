@@ -20,6 +20,7 @@ class jenkins::service {
         enable     => true,
         hasstatus  => true,
         hasrestart => true,
+		require => Package['jenkins::package'],
       }
     }
     # Stay as a no-op to preserve previous behavior
