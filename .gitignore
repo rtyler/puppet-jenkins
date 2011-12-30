@@ -1,4 +1,5 @@
 .project
+metadata.json
 .vagrant
 pkg/*
 tmp/*
