@@ -20,6 +20,7 @@ class jenkins::service {
         enable     => true,
         hasstatus  => true,
         hasrestart => true,
+        require    => Class['jenkins::package']
       }
     }
     # Stay as a no-op to preserve previous behavior
@@ -30,7 +31,8 @@ class jenkins::service {
 class jenkins::package {
   package {
     "jenkins" :
-      ensure => installed;
+      ensure  => installed,
+      require => Class['jenkins::repo']
   }
 }
 
@@ -51,8 +53,11 @@ class jenkins::repo::el {
     group => 0,
     mode  => 0644,
   }
-  file { '/etc/yum.repos.d/jenkins.repo':
-    content => template("${module_name}/jenkins.repo"),
+  yumrepo { "Jenkins":
+    name => "Jenkins",
+    baseurl => "http://pkg.jenkins-ci.org/redhat",
+    gpgcheck => "1",
+    gpgkey => 'file:///etc/yum/jenkins-ci.org.key'
   }
   file { '/etc/yum/jenkins-ci.org.key':
     content => template("${module_name}/jenkins-ci.org.key"),
