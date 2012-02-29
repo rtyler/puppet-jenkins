@@ -1,8 +1,11 @@
 class jenkins::repo::debian {
+  if !defined(File['/etc/apt/sources.list.d']) {
+    file {
+        '/etc/apt/sources.list.d' :
+            ensure => directory,
+    }
+  }
   file {
-      '/etc/apt/sources.list.d' :
-          ensure => directory;
-
       '/etc/apt/sources.list.d/jenkins.list' :
           ensure => present,
           notify => [
