@@ -3,7 +3,7 @@ class jenkins::repo {
   anchor { 'jenkins::repo::alpha': }
   anchor { 'jenkins::repo::omega': }
   case $::operatingsystem {
-    centos, redhat, oel, Amazon: {
+    centos, redhat, oel, Amazon, fedora: {
       class { 'jenkins::repo::el':
         require => Anchor['jenkins::repo::alpha'],
         before  => Anchor['jenkins::repo::omega'],
