@@ -40,7 +40,7 @@ define jenkins::plugin::install($version=0) {
       require  => File[$plugin_dir],
       path     => ['/usr/bin', '/usr/sbin',],
       user     => 'jenkins',
-      unless   => "test -f ${plugin_dir}/${plugin}",
+      unless   => "/usr/bin/test -f `echo ${plugin_dir}/${plugin}|/bin/sed 's/hpi/jpi/g'`|| /usr/bin/test -f ${plugin_dir}/${plugin}",
       notify   => Service['jenkins'];
   }
 }
