@@ -1,7 +1,5 @@
 class jenkins::repo::debian {
   file {
-      '/etc/apt/sources.list.d' :
-          ensure => directory;
 
       '/etc/apt/sources.list.d/jenkins.list' :
           ensure => present,
