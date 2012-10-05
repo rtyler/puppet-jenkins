@@ -13,6 +13,7 @@ class jenkins {
           ensure => 'installed'
       }
     }
+  }
   include jenkins::repo
   include jenkins::package
   include jenkins::service
