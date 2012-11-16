@@ -1,18 +1,20 @@
-class jenkins($version = 'installed') {
+
+class jenkins {
   package {
-    'jre':
-        ensure => '1.7.0',
-        noop   => true
+    'java-1.6.0-openjdk':
+        ensure => 'installed'
   }
   include jenkins::repo
-  class {
-    'jenkins::package':
-      version => $version,
-  }
+  include jenkins::package
   include jenkins::service
   include jenkins::firewall
+  class{ 'jenkins::plugins': plugins => "$::jenkins:plugins" }
 
-  Class['jenkins::repo'] -> Class['jenkins::package']
+
+  Package['java-1.6.0-openjdk']
+  -> Class['jenkins::repo']
+  -> Class['jenkins::package']
+  -> Class['jenkins::plugins']
   -> Class['jenkins::service']
 }
 # vim: ts=2 et sw=2 autoindent
