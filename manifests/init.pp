@@ -8,7 +8,7 @@ class jenkins {
   include jenkins::package
   include jenkins::service
   include jenkins::firewall
-  class{ 'jenkins::plugins': plugins => "$::jenkins:plugins" }
+  class{ 'jenkins::plugins': plugins => "$::jenkins_plugins" }
 
 
   Package['java-1.6.0-openjdk']
