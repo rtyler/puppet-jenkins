@@ -1,13 +1,14 @@
-define jenkins::plugin($version=0) {
+define jenkins::plugin( $version=0 ) {
   $plugin            = "${name}.hpi"
   $plugin_dir        = '/var/lib/jenkins/plugins'
   $plugin_parent_dir = '/var/lib/jenkins'
+  $plugins_url       = 'http://updates.jenkins-ci.org'
 
   if ($version != 0) {
-    $base_url = "http://updates.jenkins-ci.org/download/plugins/${name}/${version}/"
+    $base_url = "$plugins_url/download/plugins/${name}/${version}/"
   }
   else {
-    $base_url   = 'http://updates.jenkins-ci.org/latest/'
+    $base_url = "$plugins_url/latest/"
   }
 
   if (!defined(File[$plugin_dir])) {
