@@ -1,5 +1,5 @@
 
-class jenkins ($ui_user='', $ui_pass='') {
+class jenkins ($version='installed', $ui_user='', $ui_pass='') {
   include jenkins::repo
   include jenkins::package
   include jenkins::service
