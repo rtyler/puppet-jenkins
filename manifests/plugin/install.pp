@@ -12,7 +12,7 @@ define jenkins::plugin::install($version=0) {
 
   if (!defined(File[$plugin_dir])) {
     file {
-      [$plugin_parent_dir, $plugin_dir]:
+      [$plugin_dir]:
         ensure => directory,
         owner  => 'jenkins',
         group  => 'jenkins';
