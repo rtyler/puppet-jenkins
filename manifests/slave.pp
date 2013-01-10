@@ -21,7 +21,7 @@ class jenkins::slave ($master,
   file {
     $remote_fs:
       ensure => directory,
-      mode   => '755',
+      mode   => 0755,
       owner => 'jenkins',
       group => 'jenkins',
   }

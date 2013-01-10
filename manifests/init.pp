@@ -1,7 +1,10 @@
 
 class jenkins ($version='installed', $ui_user='', $ui_pass='') {
   include jenkins::repo
-  include jenkins::package
+  class {
+    'jenkins::package':
+      version => $version,
+  }
   include jenkins::service
   include jenkins::firewall
   class { 'jenkins::plugins': plugins => "$::jenkins_plugins" }
@@ -28,7 +31,7 @@ class jenkins ($version='installed', $ui_user='', $ui_pass='') {
 
   # declare this master's ssh key for the slaves to collect
   @@ssh_authorized_key {
-    "$::hostname":
+    $::hostname:
       ensure => 'present',
       user => 'root',
       type => 'ssh-rsa',
