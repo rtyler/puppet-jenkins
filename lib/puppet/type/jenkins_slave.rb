@@ -25,7 +25,7 @@ module Puppet
             defaultto 'Added by puppet'
         end
         newparam(:labels) do
-            desc "Comma separated list of the labels"
+            desc "Space separated list of the labels"
             defaultto ''
         end
         newparam(:url) do
@@ -53,7 +53,7 @@ module Puppet
             defaultto ''
         end
 
-        newproperty(:ensurea) do
+        newproperty(:ensure) do
             desc("Whether the slave is enabled, disabled or deleted from the master")
             newvalues(:enabled, :disabled, :deleted)
             defaultto :enabled

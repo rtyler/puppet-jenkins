@@ -57,6 +57,7 @@ def create_node(name,
        'stapler-class-bag' => 'true',
        'type'              => 'hudson.slaves.DumbSlave',
     }
+    debug(params.map{|k,v| "#{k}=#{v}"}.join('&'))
     proto, _,  _, host, port = url.split(/[\/:]/)
     http = Net::HTTP::Post.new("#{url}/computer/doCreateItem")
     if proto == 'https'
@@ -107,7 +108,7 @@ Puppet::Type.type(:jenkins_slave).provide(:linux) do
     commands :java => 'java'
     $java_args = ['-jar', '/var/cache/jenkins/war/WEB-INF/jenkins-cli.jar', '-s']
 
-    def ensurea
+    def ensure
         nodes = get_nodes
         if nodes.include? resource[:name]
             offline = Facter["jenkins_#{resource[:name]}_offline"]
@@ -128,7 +129,7 @@ Puppet::Type.type(:jenkins_slave).provide(:linux) do
         end
     end
 
-    def ensurea=(value)
+    def ensure=(value)
         $java_args += [resource[:url]]
         if resource[:ui_user] != ''
             $auth = ['--username', resource[:ui_user], '--password', resource[:ui_pass]]

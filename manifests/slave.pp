@@ -2,6 +2,7 @@ class jenkins::slave ($master,
                       $ensure='enabled',
                       $num_exec=2,
                       $desc='Added by puppet',
+                      $labels='',
                       $remote_fs='/var/lib/jenkins') {
 
   package {
@@ -11,11 +12,12 @@ class jenkins::slave ($master,
 
   @@jenkins_slave {
     "$::hostname":
-      ensurea => $ensure,
+      ensure => $ensure,
       master => $master,
       num_exec => $num_exec,
       desc => $desc,
       remote_fs => $remote_fs,
+      labels => $labels,
   }
 
   file {
