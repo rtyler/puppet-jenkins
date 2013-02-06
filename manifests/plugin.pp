@@ -1,5 +1,5 @@
 define jenkins::plugin($version=0) {
-  $plugin            = "${name}.hpi"
+  $plugin            = "${name}.jpi"
   $plugin_dir        = '/var/lib/jenkins/plugins'
   $plugin_parent_dir = '/var/lib/jenkins'
 
