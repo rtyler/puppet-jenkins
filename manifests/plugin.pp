@@ -24,7 +24,7 @@ define jenkins::plugin($version=0) {
     group {
       'jenkins' :
         ensure => present;
-    } 
+    }
   }
 
   if (!defined(User['jenkins'])) {
@@ -40,14 +40,14 @@ define jenkins::plugin($version=0) {
       cwd        => $plugin_dir,
       require    => File[$plugin_dir],
       path       => ['/usr/bin', '/usr/sbin',],
-      unless     => "test -f ${plugin_dir}/${plugin}",
+      unless     => "test '( -f ${plugin_dir}/${name}.hpi -o -f ${plugin_dir}/${name}.jpi )'",
   }
 
   file {
     "$plugin_dir/$plugin" :
       require => Exec["download-${name}"],
       owner   => 'jenkins',
-      mode    => 644,
+      mode    => '0644',
       notify  => Service['jenkins']
   }
 }
