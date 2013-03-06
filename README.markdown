@@ -94,26 +94,50 @@ To quickly try this module with the puppet module tool:
 
 Then the service should be running at [http://my.host.name:8080/](http://my.host.name:8080/).
 
-
-## Slaves
+## Slaves with storeconfigs
 
 An example:
 
     node /jenkins-slave.*/ {
-      class { 'jenkins::slave':
+      class { 'jenkins::slave::storeconfigs':
+        ensure => 'enabled',
+        master => 'jenkins-master1.domain.com'
+        labels => "$::osfamily puppetized"
+      }
+    }
+    node /jenkins-master.*/ {
+      class {
+        'jenkins::master::storeconfigs':
+            ui_user => 'adminuser',
+            ui_pass => 'adminpass',
+      }
+    }
+
+Some notes:
+- Storeconfigs should be enabled
+- The slaves are installed through ssh, with the keys undec /var/lib/jenkins.ssh on the master node, if not there already they will be created
+- It uses the web ui as anonymous to check if the slave is running, if it has no acces it will not be able to tell if it's online or offline, and it will assume that it's offline each time.
+
+
+## Slaves with Swarm plugin (no storeconfigs needed)
+
+An example:
+
+    node /jenkins-slave.*/ {
+      class { 'jenkins::slave::swarmplugin':
         ensure => 'enabled',
         masterurl => 'http://jenkins-master1.domain.com:8080',
         ui_user => 'adminuser',
         ui_pass => 'adminpass',
       }
     }
-    
     node /jenkins-master.*/ {
-        include jenkins
-        jenkins::plugin {'swarm':}
-        
+        include jenkins::master::swarmplugin
     }
 
+Some notes:
+- It will install the aditional swarm plugin
+- The slave process is started with a nice SystemV init script
 
 # RSpec Testing
 
