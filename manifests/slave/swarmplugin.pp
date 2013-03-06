@@ -3,7 +3,7 @@
 #
 #  ensure is not immplemented yet, since i'm assuming you want to actually run the slave by declaring it..
 #
-class jenkins::slave (
+class jenkins::slave::swarmplugin (
   $masterurl = undef,
   $ui_user = undef,
   $ui_pass = undef,
