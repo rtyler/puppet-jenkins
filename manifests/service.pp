@@ -1,3 +1,7 @@
+# == Class: service
+#
+#  Init jenkins service
+#
 class jenkins::service {
   service { 'jenkins':
     ensure     => running,

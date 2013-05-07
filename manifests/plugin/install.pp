@@ -1,3 +1,7 @@
+# == cDefine: install
+#
+#  Install a Jenkins plugin
+#
 define jenkins::plugin::install($version=0) {
   $plugin     = "${name}.hpi"
   $plugin_parent_dir = '/var/lib/jenkins'

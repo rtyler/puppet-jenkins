@@ -1,3 +1,7 @@
+# == Class: debian
+#
+#  Add debian repo
+#
 class jenkins::repo::debian {
   file {
 

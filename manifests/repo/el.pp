@@ -1,3 +1,7 @@
+# == Class: el
+#
+#  Add el repo
+#
 class jenkins::repo::el {
   File {
     owner => 'root',

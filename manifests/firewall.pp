@@ -1,3 +1,6 @@
+# == Class: firewall
+#
+#  Allow Jenkins inbound traffic
 class jenkins::firewall {
   if defined('firewall') {
     firewall {

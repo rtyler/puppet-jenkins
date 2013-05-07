@@ -1,3 +1,6 @@
+# == Class: repo
+#
+#  Add some yum repo use to jenkins
 class jenkins::repo {
   # JJM These anchors work around #8040
   anchor { 'jenkins::repo::alpha': }
