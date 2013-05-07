@@ -1,4 +1,4 @@
-# == cDefine: install
+# == Define: install
 #
 #  Install a Jenkins plugin
 #
