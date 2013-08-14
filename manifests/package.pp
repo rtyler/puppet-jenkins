@@ -5,7 +5,7 @@
 class jenkins::package {
   package {
     'jenkins' :
-      ensure => installed;
+      ensure => hiera('jenkins::version', 'installed');
   }
 }
 
