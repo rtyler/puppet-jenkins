@@ -1,3 +1,7 @@
+# == Class: config
+#
+#  configure jenkins package
+#
 class jenkins::config (
   $home='/var/lib/jenkins',
   $user='jenkins',
