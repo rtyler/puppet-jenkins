@@ -7,7 +7,7 @@
 # Directory where Jenkins store its configuration and working
 # files (checkouts, build reports, artifacts, ...).
 #
-JENKINS_HOME="<%= home %>"
+JENKINS_HOME="<%= @home %>"
 
 ## Type:        string
 ## Default:     ""
@@ -26,7 +26,7 @@ JENKINS_JAVA_CMD=""
 # Be careful when you change this, as you need to update
 # permissions of $JENKINS_HOME and /var/log/jenkins.
 #
-JENKINS_USER="<%= user %>"
+JENKINS_USER="<%= @user %>"
 
 ## Type:        string
 ## Default:     "-Djava.awt.headless=true"
@@ -43,7 +43,7 @@ JENKINS_JAVA_OPTIONS="-Djava.awt.headless=true"
 # Port Jenkins is listening on.
 # Set to -1 to disable
 #
-JENKINS_PORT="<%= port %>"
+JENKINS_PORT="<%= @port %>"
 
 ## Type:        string
 ## Default:     ""
