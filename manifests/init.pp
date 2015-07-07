@@ -9,7 +9,7 @@ class jenkins {
     }
     default: {
       package {
-        'sun-java6-jre':
+        'openjdk-7-jre':
           ensure => 'installed'
       }
     }
