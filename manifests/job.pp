@@ -25,7 +25,7 @@
 #     choose 'absent' to ensure the job is removed
 #
 define jenkins::job(
-  $config   = undef,
+  $config,
   $source   = undef,
   $template = undef,
   $jobname  = $title,
@@ -44,9 +44,6 @@ define jenkins::job(
       jobname => $jobname,
     }
   } else {
-    if $config == undef and $source == undef and $template == undef {
-      fail('You should at least specify one of the $config, $source or $template param')
-    }
     if $source {
       validate_string($source)
       $realconfig = file($source)
