@@ -1,1 +1,1 @@
-deb http://pkg.jenkins-ci.org/debian binary/
+deb http://pkg.jenkins-ci.org/debian-stable binary/
